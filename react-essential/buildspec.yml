@@ -1,0 +1,31 @@
+version: 0.2
+
+env:
+  parameter-store:
+    DOCKER_REGISTRY_USERNAME: "docker-username-reactEssential"
+    DOCKER_REGISTRY_PASSWORD: "docker-password-reactEssential"
+    DOCKER_REGISTRY_URL: "docker-url-reactEssential"
+
+phases:
+  install:
+    commands:
+      - echo "Installing runtime environment..."
+      - apt-get update -y
+      - apt-get install nodejs -y
+      - apt-get install npm -y
+
+  pre_build:
+    commands:
+      - echo "Installing NPM dependencies..."
+      - npm install
+      - echo $DOCKER_REGISTRY_PASSWORD | docker login $DOCKER_REGISTRY_URL -u $DOCKER_REGISTRY_USERNAME --password-stdin
+
+  build:
+    commands:
+      - echo "Building the Docker image and pushing to Docker registry..."
+      - docker build -t "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/toprefunder-image:latest" .
+      - docker push "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/toprefunder-image:latest"
+
+  post_build:
+    commands:
+      - echo "Build completed successfully"
