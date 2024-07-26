@@ -2,4 +2,4 @@
 
 set -e
 
-echo "Hi"
+echo "Stop application if running"
