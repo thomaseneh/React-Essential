@@ -1,5 +1,5 @@
-#!/bin/bash
+# #!/bin/bash
 
-set -e
+# set -e
 
-echo "Stop Application if running"
+# echo "Stop Application if running"

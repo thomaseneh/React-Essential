@@ -1,21 +1,21 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: react-app-dep
-  labels:
-    app: react
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: react
-  template:
-    metadata:
-      labels:
-        app: react
-    spec:
-      containers:
-      - name: react
-        image: tomcoder/frontend:latest
-        ports:
-        - containerPort: 80
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: react-app-dep
+#   labels:
+#     app: react
+# spec:
+#   replicas: 3
+#   selector:
+#     matchLabels:
+#       app: react
+#   template:
+#     metadata:
+#       labels:
+#         app: react
+#     spec:
+#       containers:
+#       - name: react
+#         image: tomcoder/frontend:latest
+#         ports:
+#         - containerPort: 80
